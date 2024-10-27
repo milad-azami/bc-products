@@ -1,22 +1,22 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import ProductsPage from "../pages/ProductsPage";
 import LoginPage from "../pages/LoginPage";
 import RegistrationPage from "../pages/RegistrationPage";
 import NotFoundPage from "../pages/NotFoundPage";
-
-import { getCookie } from "../utils/cookie";
+import AuthProvider from "../providers/AuthProvider";
 
 function Router() {
-  const token = getCookie("token");
-  console.log(token);
-
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path="/"
-          element={token ? <ProductsPage /> : <Navigate to="/login" />}
+          element={
+            <AuthProvider>
+              <ProductsPage />
+            </AuthProvider>
+          }
         />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/registration" element={<RegistrationPage />} />

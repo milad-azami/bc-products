@@ -20,7 +20,7 @@ api.interceptors.request.use((request) => {
 });
 
 api.interceptors.response.use((response) => {
-  return response;
+  return response.data;
 });
 
 export default api;

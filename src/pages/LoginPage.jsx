@@ -26,8 +26,8 @@ function LoginPage() {
 
     mutate(form, {
       onSuccess: (data) => {
-        console.log(data.data);
-        setCookie("token", data.data?.token);
+        console.log(data);
+        setCookie("token", data?.token);
         navigate("/");
       },
       onError: (error) => console.log(error.response.data.message),
@@ -50,7 +50,7 @@ function LoginPage() {
         value={form.password}
         onChange={changeHandler}
       />
-      <button type="submit">Register</button>
+      <button type="submit">Login</button>
     </form>
   );
 }
